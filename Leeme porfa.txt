@@ -1,0 +1,10 @@
+Link de la página de donde encontraras el diagrama para armar el circuito y lista de materiales:
+https://www.instructables.com/6x6x6-Arduino-LED-Cube/
+
+RECOMENDACION
+compra los leds en mercado libre, si son leds brillosos y no son difusos, tienes que usar una lija para dejarlos opacos y asi que la luz no se escape y se atrape dentro del led, Pero si compra esos materiales al 100 por cien que están en la página.
+
+Si vas a soldar el circuito, creeme es una mala idea.
+Mejor usa dos Protoboards para construir el circuito y conectar el cubo, consigue alambre que sea de un diametro vastante largo y lo soldas al cubo tal que aparece en las imagenes que están en la carpeta imagenes.
+
+El diagra tiene un fallo, pero mandame mensaje en cuanto empiezes a realizar el circuito, para guiarte.

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Page with HTML5, CSS and JavaScript">
+    <meta name="author" content="Kebyn Cristopher Martinez Vasquez">
+    <link rel="icon" type="image/png" href="images/icons/ordenador.png"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="css/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js"></script>
+    <link href="css/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/page.css" rel="stylesheet">
+  <title>Controlador</title>
+</head>
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="principal.html">Tablero IoT</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <!--<a class="nav-link" href="../index.html">Cerrar Sesi&oacute;n</a>-->
+      </li>
+    </ul>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                <span data-feather="monitor"></span>
+                Principal <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#cubo">
+                <span data-feather="code"></span>
+                Instrucciones Cubo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <img src="images/icons/cubito.jpg" class="img-thumbnail" alt="logo">
+          <h1 class="h2">Patrones para Cubo LED</h1>
+        </div>
+        <h2 id="status">Principal</h2>
+        <!--Tarjeta donde se van a mandar llamar las animaciones-->
+        <div class="card" id="cubo">
+          <div class="card-header">
+            Manejo del Cubo
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Patrones</h5>
+            <p class="card-text">Elige alguna de los 8 patrones que quieres desplegar en tu cubo LED</p>
+            <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col" id="cabeceraDescripcion">Descripción</th>
+                  <th scope="col">Patron</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" rowspan="8">
+                    <p id="descripcionAnimacion"></p>
+                    <img src="images/ledcube.jpg" class="img-fluid" alt="Responsive image">
+                  </th>
+                  <td>
+                    <input class="form-check-input" type="radio" name="ListaPatron" id="animacion1" value="q" checked>
+                    <label class="form-check-label" for="animacion1">Encender Cubo por Completo</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input class="form-check-input" type="radio" name="ListaPatron" id="animacion2" value="w">
+                    <label class="form-check-label" for="animacion2">Cubitos Aleatorios</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input class="form-check-input" type="radio" name="ListaPatron" id="animacion3" value="e">
+                    <label class="form-check-label" for="animacion3">Cubo Flasheando</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input class="form-check-input" type="radio" name="ListaPatron" id="animacion4" value="r">
+                    <label class="form-check-label" for="animacion4">Leds Aleatorios</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input class="form-check-input" type="radio" name="ListaPatron" id="animacion5" value="t">
+                    <label class="form-check-label" for="animacion5">Cubo Creciente</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input class="form-check-input" type="radio" name="ListaPatron" id="animacion6" value="y">
+                    <label class="form-check-label" for="animacion6">Orillas 6x6</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input class="form-check-input" type="radio" name="ListaPatron" id="animacion7" value="u">
+                    <label class="form-check-label" for="animacion7">Experimental</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input class="form-check-input" type="radio" name="ListaPatron" id="animacion8" value="i">
+                    <label class="form-check-label" for="animacion8">Cuadro dentro de un Cuadro</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="button" onclick="obtenValor()" class="btn btn-primary">
+              Desplegar en el cubo
+            </button>
+          </div>
+        </div>
+        <br><br>
+      </main>
+    </div>
+  </div>
+  <!--Footer de pagina-->
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; Integración de sistemas y arquitecturas - Otoño 2020</p>
+  </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script>window.jQuery || document.write('<script src="css/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="css/vendor/popper.min.js"></script>
+    <script src="css/dist/js/bootstrap.min.js"></script>
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+
+    <script type="text/javascript">
+      var clientId = 'client_id_' + Math.floor((Math.random() + 1000000) + 1);
+      client = new Paho.MQTT.Client("hairdresser.cloudmqtt.com", 35476, clientId);
+
+      client.onConnectionLost = onConnectionLost;
+      client.onMessageArrived = onMessageArrived;
+
+      var options = {
+        useSSL: true,
+        userName: "qudxvewe",
+        password: "W2V2LvCJ715s",
+        onSuccess:onConnect,
+        onFailure:doFail
+      }
+
+      client.connect(options);
+
+      function onConnect() {
+        console.log("Conexión exitosa!!!");
+        $("#status").html("Conexión Establecida");
+        client.subscribe("salidaKebyn");
+      }
+
+      function onMessageArrived(message) {
+        console.log("Un mensaje ha llegado: " + message.payloadString);
+        $("#display").html(message.payloadString);
+      }
+
+      function doFail(e){
+        console.log(e);
+      }
+
+      function onConnectionLost(responseObject) {
+        if (responseObject.errorCode !== 0){
+          console.log("onConnectionLost: " + responseObject.errorMessage);
+        }
+      }
+
+      function command(value){
+        console.log(value);
+        message = new Paho.MQTT.Message(value + "");
+        message.destinationName = "entradaLedKebyn";
+        client.send(message);
+      }
+
+      function activarPatron(value){
+        console.log(value);
+        message = new Paho.MQTT.Message(value + "");
+        message.destinationName = "/Kebyn/Patrones";
+        client.send(message);
+      }
+
+      function obtenValor(){
+          var valuePatron=$('input:radio[name=ListaPatron]:checked').val(); //obtener los valores del radiobutton
+          $("#descripcionAnimacion").html("Activando el siguiente patron: "+valuePatron);
+          console.log("Animacion:"+valuePatron);
+          activarPatron(valuePatron);
+      }
+
+    </script>
+  </body>
+</html>
